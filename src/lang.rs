@@ -130,7 +130,8 @@ pub(crate) fn is_cjk_lang(lang_or_locale: &str) -> bool {
 
 fn resolve_lang(saved_lang: &str, locale: &str, cjk_fallback: bool) -> String {
     let locale = locale.to_lowercase();
-    let mut lang = saved_lang.to_lowercase();
+    // nihdesk: mac dinh tieng Viet khi user chua chon ngon ngu (noi bo VN). Van doi duoc trong UI.
+    let mut lang = if saved_lang.is_empty() { "vi".to_owned() } else { saved_lang.to_lowercase() };
     if cjk_fallback && is_cjk_lang(&lang) {
         return "en".to_owned();
     }
