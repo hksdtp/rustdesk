@@ -2844,7 +2844,6 @@ jobs:
 
   build-rustdesk-web:
     if: false  # disabled: windows-x64-only build
-    if: False
     needs: [validate-update-metadata-keys]
     name: build-rustdesk-web
     runs-on: ubuntu-22.04
